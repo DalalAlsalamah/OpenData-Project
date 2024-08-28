@@ -41,7 +41,7 @@ class DatasetController extends Controller
     public function create(){
       
         $tags=Tag::all();
-        return view('datasets.create',['tags'=>$tags]);
+        return view('datasets/create',['tags'=>$tags]);
 
     
     }
