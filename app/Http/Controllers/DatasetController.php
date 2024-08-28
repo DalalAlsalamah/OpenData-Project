@@ -39,9 +39,7 @@ class DatasetController extends Controller
     
     }
     public function create(){
-        if(Tag::first()==null){
-            return view('tags.create');
-        }
+      
         $tags=Tag::all();
         return view('datasets.create',['tags'=>$tags]);
 

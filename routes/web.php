@@ -7,13 +7,20 @@ use App\Http\Controllers\LoginController;
 
 
 
+
+Route::get('/', [DatasetController::class, 'index']);
+Route::get('datasets', [DatasetController::class, 'index'])->name('datasets.index'); 
+Route::get('datasets/{dataset}', [DatasetController::class, 'show'])->name('datasets.show');
+
 Route::middleware('auth')->group(function () {
-    Route::get('/', [DatasetController::class, 'index']);
     Route::resource('tags', TagController::class);
-    Route::resource('datasets', DatasetController::class);
+    Route::get('datasets/create', [DatasetController::class, 'create'])->name('datasets.create');
+    Route::post('datasets', [DatasetController::class, 'store'])->name('datasets.store'); 
+    Route::get('datasets/{dataset}/edit', [DatasetController::class, 'edit'])->name('datasets.edit');
+    Route::put('datasets/{dataset}', [DatasetController::class, 'update'])->name('datasets.update'); 
+    Route::delete('datasets/{dataset}', [DatasetController::class, 'destroy'])->name('datasets.destroy'); 
+
 });
-
-
 
 Route::get('/register', [RegisterController::class, 'create']);
 Route::post('/register', [RegisterController::class, 'store']);
